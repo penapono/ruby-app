@@ -1,0 +1,10 @@
+- content_for :javascript, javascript_include_tag('views/brands/index')
+= content_for :stylesheet, stylesheet_link_tag('views/brands/index')
+
+%div
+  %p
+    %label= "#{t('.choose_brand')}:"
+    = select_tag 'webmotors_brand_id', options_from_collection_for_select(brands, 'webmotors_id', 'name', params[:webmotors_brand_id])
+  - if brands.any?
+    = link_to brand_models_path(brands.first.webmotors_id), id: 'link_to_models' do
+      = submit_tag t('.search_models')
